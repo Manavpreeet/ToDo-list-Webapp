@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+<title>Main ToDo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+
+<body>
+
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+{#  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>#}
+    <BR>
+        <button class="w3-button w3-ripple w3-xlarge w3-hover-light-grey"  onclick="location.href='{{ url_for('login') }}'" style="font-weight:900;">LOGIN</button>
+  <div class="w3-center">
+  <h4>MANAGE YOUR DAY</h4>
+  <h1 class="w3-xxxlarge w3-animate-bottom w3-center">BUILD YOUR TASK</h1>
+    <div class="w3-padding-32">
+      <button class="w3-button w3-ripple w3-xlarge w3-hover-light-grey " onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">SIGN UP</button>
+    </div>
+  </div>
+</header>
+
+<!-- Modal -->
+<div id="id01" class="w3-modal w3-black">
+    <div class="w3-modal-content  w3-animate-top">
+      <header class="w3-container w3-theme-l1">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">×</span>
+        <h3 class="w3-container w3-center">Sign Up</h3>
+      </header>
+      <form action=" " method="post" novalidate class="w3-container w3-white">
+                    {{ form.hidden_tag() }}
+          <p class="w3-container w3-center">
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+           <p class="w3-container w3-center">
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p class="w3-container w3-center">
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+             {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+           <p class="w3-container w3-center">
+            {{ form.password2.label }}<br>
+            {{ form.password2(size=32) }}
+                {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+          <a href="{{ url_for('login') }}"><p class="w3-container w3-center">{{ form.submit() }}</p></a>
+      </form>
+      <footer class="w3-container w3-theme-l1">
+        <p class="w3-center">Already a user? <a href="{{ url_for('login') }}" >log in</a></p>
+      </footer>
+    </div>
+</div>
+
+<div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>About App</h3><br>
+  <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>It does this </p>
+  <p>It does this</p>
+  <p>It does this</p>
+  <p>It does this</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>Multiple task </h3><br>
+  <i class="fa fa-th w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>It has this</p>
+  <p>It has this</p>
+  <p>It has this</p>
+  <p>It has this</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>Design</h3><br>
+  <i class="fa fa-diamond w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>Paper like design</p>
+  <p>Bold colors and shadows</p>
+  <p>Equal across platforms</p>
+  <p>Equal across devices</p>
+  </div>
+</div>
+</div>
+{#<!-- Footer -->#}
+<footer class="w3-container w3-theme-dark w3-padding-16" >
+  <h3>About us</h3>
+  <p>Powered by <a href="#" target="_blank">we</a></p>
+  <p>Email: admin@admin.com></p>
+</footer>
+
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+// Side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "100%";
+  x.style.fontSize = "40px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Tabs
+function openCity(evt, cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  var activebtn = document.getElementsByClassName("testbtn");
+  for (i = 0; i < x.length; i++) {
+    activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-dark-grey";
+}
+
+var mybtn = document.getElementsByClassName("testbtn")[0];
+mybtn.click();
+
+// Accordions
+function myAccFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Slideshows
+var slideIndex = 1;
+
+function plusDivs(n) {
+  slideIndex = slideIndex + n;
+  showDivs(slideIndex);
+}
+
+function showDivs(n) {
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+
+showDivs(1);
+
+// Progress Bars
+function move() {
+  var elem = document.getElementById("myBar");
+  var width = 5;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+}
+</script>
+<script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <title>Log in</title>
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<style>
+    body{
+            animation: ease-in;
+    }
+</style>
+<body translate="no">
+<div class=" w3-display-middle w3-card-1">
+      <header class="w3-container w3-theme-l1">
+        <h3 class="w3-container w3-center">Sign Up</h3>
+      </header>
+      <form action="" method="post" novalidate class="w3-container w3-light-grey">
+          {{ form.hidden_tag() }}
+          <p class="w3-container w3-center">
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+               {% for error in form.username.errors %}
+            <span style="color: red;">[ {{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p class="w3-container w3-center">
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+             {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+          <p class="w3-container w3-center">{{ form.submit() }} <a href="{{ url_for('main') }}" class="w3-center">Go Back</a></p>
+
+
+      </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+from app.__inti__ import app
